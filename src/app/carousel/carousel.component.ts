@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { stringify } from "querystring";
 
 interface CarouselItem {
@@ -23,29 +22,30 @@ interface Dimension {
 })
 export class CarouselComponent implements OnInit {
 
-      defaultImages =  [
-        { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/luke.png',  name:'item0'},
-        { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/chubaka.png', name:'item1'},
-        { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/boba.png',  name:'item2'},
-        { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/c3po.png', name:'item3'},
-        { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/leia.png', name:'item4'},
-        { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/obi.png', name:'item5'},
-        { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/r2d2.png', name:'item6'},
-        { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/storm.png', name:'item7'},
-        { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/varder.png', name:'item8'},
-        { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/yoda.png', name:'item9'},
-      ]
+  // @Input('item-number') multiNumber?:number;
+  // @Input('data-array') carouselData?:Array<CarouselItem>;
 
-      startIndex:number;
-      endIndex:number;
-      activityArray:Object[];
+  defaultImages =  [
+    { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/luke.png',  name:'item0'},
+    { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/chubaka.png', name:'item1'},
+    { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/boba.png',  name:'item2'},
+    { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/c3po.png', name:'item3'},
+    { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/leia.png', name:'item4'},
+    { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/obi.png', name:'item5'},
+    { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/r2d2.png', name:'item6'},
+    { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/storm.png', name:'item7'},
+    { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/varder.png', name:'item8'},
+    { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/yoda.png', name:'item9'},
+  ]
 
-  constructor(private itemNumber:number, private carouselItems?: Array<CarouselItem> ){
+  startIndex:number;
+  endIndex:number;
+  activityArray:Object[];
+  constructor(private itemNumber?:number, private carouselItems?: Array<CarouselItem> ){
 
    // Initialise default images if no array of objects passed
     if(!this.carouselItems) {this.carouselItems = this.defaultImages;}
     console.log("carouselItems => ", this.carouselItems.slice(0,4));
-
    // default if the itemNumber wasn't supplied
    if(!this.itemNumber )
    { this.itemNumber = 4; }
@@ -140,6 +140,8 @@ export class CarouselComponent implements OnInit {
   }
 
   ngOnInit() {
+    // if(this.multiNumber) {this.itemNumber = this.multiNumber;} else
+    // if(this.carouselData) {this.carouselItems =   this.carouselData;}
   }
 
 }

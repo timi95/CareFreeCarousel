@@ -1,1 +1,9 @@
 <p>carousel works!</p>
+<div>
+  <ul>
+    <li *ngFor="let item of carouselItems" >
+      <img [src]="item.image" [alt]="item.name">
+      <h3>{{item.name | uppercase }}</h3>
+    </li>
+  </ul>
+</div>
