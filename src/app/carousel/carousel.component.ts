@@ -22,9 +22,8 @@ interface Dimension {
 })
 export class CarouselComponent implements OnInit {
 
-  // @Input('item-number') multiNumber?:number;
-  // @Input('data-array') carouselData?:Array<CarouselItem>;
-
+  @Input('item-number') itemNumber?:number;
+  @Input('data-array') carouselItems?:Array<CarouselItem>;
   defaultImages =  [
     { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/luke.png',  name:'item0'},
     { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/chubaka.png', name:'item1'},
@@ -38,59 +37,63 @@ export class CarouselComponent implements OnInit {
     { image: 'https://ngx-drag-scroll.fanjin.io/assets/img/yoda.png', name:'item9'},
   ]
 
+
   startIndex:number;
   endIndex:number;
   activityArray:Object[];
-  constructor(private itemNumber?:number, private carouselItems?: Array<CarouselItem> ){
 
-   // Initialise default images if no array of objects passed
-    if(!this.carouselItems) {this.carouselItems = this.defaultImages;}
-    console.log("carouselItems => ", this.carouselItems.slice(0,4));
-   // default if the itemNumber wasn't supplied
-   if(!this.itemNumber )
-   { this.itemNumber = 4; }
-   // if the number of objects is too few, then set the activity array to that number
-   if(this.carouselItems.length < 5)
-   { this.itemNumber = this.carouselItems.length; }
-   // any number set larger than 4 will default the activity array to a size of 4
-   if( this.itemNumber < 4)
-   { this.activityArray = Array(this.itemNumber); } else {
-     this.activityArray = Array(4);
+  ngOnInit() {
+    // Initialise default images if no array of objects passed
+     if(!this.carouselItems) {this.carouselItems = this.defaultImages;}
+     console.log("carouselItems => ", this.carouselItems.slice(0,4));
+    // default if the itemNumber wasn't supplied
+    if(!this.itemNumber )
+    { this.itemNumber = 4; }
+    // if the number of objects is too few, then set the activity array to that number
+    if(this.carouselItems.length < 5)
+    { this.itemNumber = this.carouselItems.length; }
+    // any number set larger than 4 will default the activity array to a size of 4
+    if( this.itemNumber >= 4)
+    { this.activityArray = Array(4); } else {
+      this.activityArray = Array(this.itemNumber);
+    }
+    // if the first default image is absent then map user provide images
+    if(this.carouselItems[0].image != 'https://ngx-drag-scroll.fanjin.io/assets/img/luke.png') {
+      this.carouselItems =
+      this.carouselItems.map((value)=>{
+        return {...value, image:''}
+      });
+    }
+    // setting indexes and activityArray
+    this.startIndex = 0;
+    this.endIndex = this.activityArray.length;
+    this.activityArray = this.carouselItems.slice(this.startIndex,this.endIndex);
+
    }
-   // if the first default image is absent then map user provide images
-   if(this.carouselItems[0].image != 'https://ngx-drag-scroll.fanjin.io/assets/img/luke.png') {
-     this.carouselItems =
-     this.carouselItems.map((value)=>{
-       return {...value, image:''}
-     });
+   // CONSTRUCTOR END //
+
+
+   next(){
+    console.log("Next! ");
+    if( (this.startIndex >= 0) &&
+        (this.endIndex < this.carouselItems.length) ) {
+         this.startIndex += 1;
+         this.endIndex += 1;
+         this.activityArray = this.carouselItems.slice(this.startIndex,this.endIndex);
+       }
+       console.log("startIndex [",this.startIndex,"]");
+       console.log("endIndex [",this.endIndex,"]");
    }
-   // setting indexes and activityArray
-   this.startIndex = 0;
-   this.endIndex = this.activityArray.length;
-   this.activityArray = this.carouselItems.slice(this.startIndex,this.endIndex);
-
-  }
-
-
-  next(){
-   console.log("Next! ");
-   if(this.startIndex >= 0 &&
-      this.endIndex <= this.carouselItems.length &&
-      ( this.endIndex - this.startIndex) == this.activityArray.length ) {
-        this.startIndex += 1;
-        this.endIndex += 1;
+   previous(){
+     console.log("Previous!");
+     if( this.startIndex > 0 ) {
+        this.startIndex -= 1;
+        this.endIndex -= 1;
         this.activityArray = this.carouselItems.slice(this.startIndex,this.endIndex);
       }
+      console.log("startIndex [",this.startIndex,"]");
+      console.log("endIndex [",this.endIndex,"]");
   }
-  previous(){
-    console.log("Previous!");
-    if( this.startIndex >= 1 ) {
-       this.startIndex -= 1;
-       this.endIndex -= 1;
-       this.activityArray = this.carouselItems.slice(this.startIndex,this.endIndex);
-     }
- }
-
 
 
   // ACCESSORS
@@ -139,9 +142,5 @@ export class CarouselComponent implements OnInit {
     this.carouselItems[index].width = newDimension.width;
   }
 
-  ngOnInit() {
-    // if(this.multiNumber) {this.itemNumber = this.multiNumber;} else
-    // if(this.carouselData) {this.carouselItems =   this.carouselData;}
-  }
 
 }

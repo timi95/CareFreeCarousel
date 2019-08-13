@@ -1,9 +1,10 @@
-<p>carousel works!</p>
-<div>
-  <ul>
-    <li *ngFor="let item of carouselItems" >
+<div >
+  <ul class="buttons">
+    <button class="but1" (click)="previous()">Button One</button>
+    <li *ngFor="let item of activityArray" >
       <img [src]="item.image" [alt]="item.name">
       <h3>{{item.name | uppercase }}</h3>
     </li>
+    <button class="but2" (click)="next()">Button Two</button>
   </ul>
 </div>

@@ -1,0 +1,28 @@
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.buttons, button{
+  border-radius: 35%;
+  word-wrap: break-word;
+  padding: 10px;
+  width: 5%;
+  height: 20%;
+}
+
+ img {
+  box-shadow: 9px 8px #e0dbdb;
+  width: 90%;
+  margin-right: 10%;
+}
+div > ul{
+  align-items: left;
+  padding: 0;
+  margin:0;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  /* background: grey; */
+}
