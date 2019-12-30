@@ -44,14 +44,15 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit() {
     // Initialise default images if no array of objects passed
-     if(!this.carouselItems) {this.carouselItems = this.defaultImages;}
+     if(!this.carouselItems)
+     {this.carouselItems = this.defaultImages; console.log('set carouselItems');}
      console.log("carouselItems => ", this.carouselItems.slice(0,4));
     // default if the itemNumber wasn't supplied
     if(!this.itemNumber )
-    { this.itemNumber = 4; }
+    { this.itemNumber = 4; console.log('set itemNumber to 4 if empty itemNumber');}
     // if the number of objects is too few, then set the activity array to that number
     if(this.carouselItems.length < 5)
-    { this.itemNumber = this.carouselItems.length; }
+    { this.itemNumber = this.carouselItems.length; console.log('set itemNumber to carousel items length'); }
     // any number set larger than 4 will default the activity array to a size of 4
     if( this.itemNumber >= 4)
     { this.activityArray = Array(4); } else {
