@@ -71,7 +71,7 @@ export class CarouselComponent implements OnInit {
     this.activityArray = this.carouselItems.slice(this.startIndex,this.endIndex);
 
    }
-   // CONSTRUCTOR END //
+   // CONSTRUCTOR END // 
 
 
    next(){
