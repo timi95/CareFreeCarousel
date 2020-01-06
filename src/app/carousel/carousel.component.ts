@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener, AfterViewInit } from '@angular/core';
 import { stringify } from "querystring";
 
 interface CarouselItem {
@@ -20,7 +20,10 @@ interface Dimension {
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent implements OnInit, AfterViewInit {
+    ngAfterViewInit(): void {
+        throw new Error("Method not implemented.");
+    }
 
   @Input('item-number') itemNumber?:number;
   @Input('data-array') carouselItems?:Array<CarouselItem>;
@@ -71,8 +74,18 @@ export class CarouselComponent implements OnInit {
     this.activityArray = this.carouselItems.slice(this.startIndex,this.endIndex);
 
    }
-   // CONSTRUCTOR END // 
+   // CONSTRUCTOR END //
 
+
+   @HostListener("window:resize", [])
+   private onResize() {
+       console.log("This window has been resized")
+     this.detectScreenSize();
+   }
+
+   private detectScreenSize() {
+       // we will write this logic later
+    }
 
    next(){
     console.log("Next! ");
