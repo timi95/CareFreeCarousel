@@ -44,6 +44,8 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   startIndex:number;
   endIndex:number;
   activityArray:Object[];
+  screenWidth: number ;
+  screenHeight: number ;
 
   ngOnInit() {
     // Initialise default images if no array of objects passed
@@ -80,6 +82,8 @@ export class CarouselComponent implements OnInit, AfterViewInit {
    @HostListener("window:resize", [])
    private onResize() {
        console.log("This window has been resized")
+       this.screenHeight = window.innerHeight;
+       this.screenWidth = window.innerWidth;
      this.detectScreenSize();
    }
 
