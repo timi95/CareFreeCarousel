@@ -1,6 +1,6 @@
 # CareFreeCarousel
 
-[CareFreeCarousel](https://stackblitz-project-practice.firebaseapp.com/?74698=) is a work in progress. For now it is merely a snappy carousel based on javascript arrays. The carousel functions by cycling throu gh an array of images provided by the user, or defaults to the example images displayed
+[CareFreeCarousel](https://stackblitz-project-practice.firebaseapp.com/?74698=) is a work in progress. For now it is merely a snappy carousel based on javascript arrays. The carousel functions by cycling through an array of images provided by the user, or defaults to the example images displayed
 
 ## Development server
 
