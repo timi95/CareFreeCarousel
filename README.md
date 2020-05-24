@@ -1,4 +1,4 @@
-# [CareFreeCarousel] `https://stackblitz-project-practice.firebaseapp.com/?74698=`
+# [CareFreeCarousel] (https://stackblitz-project-practice.firebaseapp.com/?74698=)
 
 CareFreeCarousel is a work in progress. For now it is merely a snappy carousel based on javascript arrays. The carousel functions by cycling through an array of images provided by the user, or defaults to the example images displayed
 
